@@ -47,7 +47,7 @@ export default function Questionaire() {
 		})
 	}
 
-	const reset = () => {
+	const restart = () => {
 		localStorage.removeItem('quizId')
 		setPage("welcome")
 	}
@@ -60,7 +60,7 @@ export default function Questionaire() {
 		<div>
 			{page === 'welcome' && (<Welcome start={start} />)}
 			{page === 'quiz' && (<Quiz quiz={quiz} next={next} />)}
-			{page === 'score' && (<Score quiz={quiz} reset={reset} />)}
+			{page === 'score' && (<Score quiz={quiz} restart={restart} />)}
 		</div>
 	);
 }

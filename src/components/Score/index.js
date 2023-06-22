@@ -9,14 +9,14 @@ const CONGRATULATIONS_MESSAGES = {
 	0: "Looks like someone skipped school"
 }
 
-export default function Score({ quiz, reset }) {
+export default function Score({ quiz, restart }) {
 
 	return (
 		<div>
 			<p className="text-large">Congratulations on finishing the quiz!</p>
 			<p className="text-large">Score: <span className="score">{quiz.score}</span>/5</p>
 			<p className="text text-gray">{CONGRATULATIONS_MESSAGES[quiz.score]}</p>
-			<QuizButton className="restart" onClick={reset}>Reset</QuizButton>
+			<QuizButton className="restart" onClick={restart}>Restart</QuizButton>
 		</div>
 	);
 }
