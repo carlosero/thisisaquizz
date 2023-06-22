@@ -1,3 +1,4 @@
+import Loading from "../Loading";
 import Welcome from "../Welcome";
 import Quiz from "../Quiz";
 import Score from "../Score";
@@ -7,6 +8,7 @@ import QuizApi from "../../services/quiz-api";
 export default function Questionaire() {
 	const [page, setPage] = useState("welcome");
 	const [quiz, setQuiz] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const quizId = localStorage.getItem('quizId')
@@ -16,10 +18,14 @@ export default function Questionaire() {
 				setQuiz(quiz)
 				if (quiz.state === 'completed') {
 					setPage('score')
+					setLoading(false)
 				} else {
 					setPage('quiz')
+					setLoading(false)
 				}
 			})
+		} else {
+			setLoading(false)
 		}
 	}, [])
 
@@ -44,6 +50,10 @@ export default function Questionaire() {
 	const reset = () => {
 		localStorage.removeItem('quizId')
 		setPage("welcome")
+	}
+
+	if (loading) {
+		return <Loading />
 	}
 
 	return (

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 const CONGRATULATIONS_MESSAGES = {
 	5: "You are a genius!",
 	4: "You almost got it all right!",
