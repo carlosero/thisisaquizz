@@ -3,7 +3,7 @@ import Welcome from "../Welcome";
 import Quiz from "../Quiz";
 import Score from "../Score";
 import { useState, useEffect } from "react";
-import QuizApi from "../../services/quiz-api";
+import QuizApi from "../../services/QuizApi";
 
 export default function Questionaire() {
 	const [page, setPage] = useState("welcome");
