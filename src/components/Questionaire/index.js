@@ -2,20 +2,27 @@ import Welcome from "../Welcome";
 import Quiz from "../Quiz";
 import Score from "../Score";
 import { useState } from "react";
+import QuizApi from "../../services/quiz-api";
 
 export default function Questionaire() {
 	const [page, setPage] = useState("welcome");
 	const [quiz, setQuiz] = useState(null);
-	// load quiz from API and inject into components
 
 	const start = () => {
-		setPage("quiz")
-		// call api to create quiz and set on cookies
+		// store quiz id in cookies?
+		QuizApi.createQuiz().then((quiz) => {
+			setQuiz(quiz)
+			setPage("quiz")
+		})
 	}
 
-	const next = () => {
-		// call API
-		setPage('score')
+	const next = (answer) => {
+		QuizApi.answerQuestion(quiz.id, answer).then((quiz) => {
+			setQuiz(quiz)
+			if (quiz.state === 'completed') {
+				setPage('score')
+			}
+		})
 	}
 
 	const reset = () => {
@@ -25,7 +32,7 @@ export default function Questionaire() {
 
 	return (
 		<div>
-			{page === 'welcome' && (<Welcome quiz={quiz} start={start} />)}
+			{page === 'welcome' && (<Welcome start={start} />)}
 			{page === 'quiz' && (<Quiz quiz={quiz} next={next} />)}
 			{page === 'score' && (<Score quiz={quiz} reset={reset} />)}
 		</div>
