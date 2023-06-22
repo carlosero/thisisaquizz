@@ -1,4 +1,5 @@
 import { useState } from "react";
+import QuizButton from "../QuizButton";
 
 export default function Quiz({ quiz, next }) {
 	const [answer, setAnswer] = useState(null);
@@ -26,7 +27,7 @@ export default function Quiz({ quiz, next }) {
 					</div>
 				))}
 			</div>
-			<button className="next button" onClick={advance}>Next</button>
+			<QuizButton className="next" onClick={advance}>Next</QuizButton>
 		</div>
 	);
 }

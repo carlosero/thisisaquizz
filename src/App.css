@@ -28,6 +28,15 @@
   background-color: #0044cd;
 }
 
+.button-loading {
+  background-color: #8fb5ff;
+  cursor: wait;
+}
+
+.button-loading:hover {
+  background-color: #8fb5ff;
+}
+
 .text {
   font-size: calc(16px + 1vmin);
 }
