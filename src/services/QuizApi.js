@@ -7,7 +7,6 @@ const QuizApi = {
 	},
 	getQuiz: async (id) => {
 		const response = await fetch(`${API_URL}/api/v1/quizzes/${id}`);
-		console.log("response:", response)
 		return await response.json();
 	},
 	answerQuestion: async (quizId, answer) => {

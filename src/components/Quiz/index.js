@@ -8,8 +8,8 @@ export default function Quiz({ quiz, next }) {
 		setAnswer(opt.target.value);
 	}
 
-	const advance = () => {
-		next(answer);
+	const advance = async () => {
+		await next(answer);
 	}
 
 	return (

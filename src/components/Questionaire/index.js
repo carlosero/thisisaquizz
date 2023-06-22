@@ -11,22 +11,24 @@ export default function Questionaire() {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const quizId = localStorage.getItem('quizId')
+		(async () => {
+			const quizId = localStorage.getItem('quizId')
 
-		if (quizId) {
-			QuizApi.getQuiz(quizId).then((quiz) => {
-				setQuiz(quiz)
-				if (quiz.state === 'completed') {
+			if (quizId) {
+				const apiQuiz = await QuizApi.getQuiz(quizId)
+				console.log("GOT:", apiQuiz)
+				setQuiz(apiQuiz)
+				if (apiQuiz.state === 'completed') {
 					setPage('score')
 					setLoading(false)
 				} else {
 					setPage('quiz')
 					setLoading(false)
 				}
-			})
-		} else {
-			setLoading(false)
-		}
+			} else {
+				setLoading(false)
+			}
+		})();
 	}, [])
 
 	const start = async () => {
