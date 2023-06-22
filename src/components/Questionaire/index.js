@@ -29,22 +29,20 @@ export default function Questionaire() {
 		}
 	}, [])
 
-	const start = () => {
+	const start = async () => {
 		// store quiz id in cookies?
-		QuizApi.createQuiz().then((quiz) => {
-			localStorage.setItem('quizId', quiz.id)
-			setQuiz(quiz)
-			setPage("quiz")
-		})
+		const apiQuiz = await QuizApi.createQuiz()
+		localStorage.setItem('quizId', apiQuiz.id)
+		setQuiz(apiQuiz)
+		setPage("quiz")
 	}
 
-	const next = (answer) => {
-		QuizApi.answerQuestion(quiz.id, answer).then((quiz) => {
-			setQuiz(quiz)
-			if (quiz.state === 'completed') {
-				setPage('score')
-			}
-		})
+	const next = async (answer) => {
+		const apiQuiz = await QuizApi.answerQuestion(quiz.id, answer)
+		setQuiz(apiQuiz)
+		if (apiQuiz.state === 'completed') {
+			setPage('score')
+		}
 	}
 
 	const restart = () => {
