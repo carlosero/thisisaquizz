@@ -1,4 +1,4 @@
-const API_URL = 'https://api.thisisaquiz.fyi'
+const API_URL = 'https://api.thisisaquizz.fyi'
 
 const QuizApi = {
 	createQuiz: async () => {
