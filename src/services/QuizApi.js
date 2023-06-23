@@ -9,8 +9,12 @@ const QuizApi = {
 		const response = await fetch(`${API_URL}/api/v1/quizzes/${id}`);
 		return await response.json();
 	},
-	answerQuestion: async (quizId, answer) => {
-		const response = await fetch(`${API_URL}/api/v1/quizzes/${quizId}/next`, { method: 'POST', body: JSON.stringify({ answer }) });
+	answerQuestion: async (quizId, answer, question_number) => {
+		const response = await fetch(`${API_URL}/api/v1/quizzes/${quizId}/next`, {
+			method: 'POST', headers: {
+				"Content-Type": "application/json"
+			}, body: JSON.stringify({ answer, question_number })
+		});
 		return await response.json();
 	}
 }

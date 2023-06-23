@@ -16,7 +16,6 @@ export default function Questionaire() {
 
 			if (quizId) {
 				const apiQuiz = await QuizApi.getQuiz(quizId)
-				console.log("GOT:", apiQuiz)
 				setQuiz(apiQuiz)
 				if (apiQuiz.state === 'completed') {
 					setPage('score')
@@ -40,7 +39,7 @@ export default function Questionaire() {
 	}
 
 	const next = async (answer) => {
-		const apiQuiz = await QuizApi.answerQuestion(quiz.id, answer)
+		const apiQuiz = await QuizApi.answerQuestion(quiz.id, answer, quiz.question.number)
 		setQuiz(apiQuiz)
 		if (apiQuiz.state === 'completed') {
 			setPage('score')
